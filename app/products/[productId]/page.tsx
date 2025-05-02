@@ -3,16 +3,17 @@ import getProduct from "./get-product";
 import Image from "next/image";
 import { getProductImage } from "../product-image";
 import Checkout from "@/app/checkout/checkout";
-
-interface ISingleProductProps {
-  params: {
+interface SingleProductPageProps {
+  params: Promise<{
     productId: string;
-  };
+  }>;
 }
 
-export default async function SingleProduct({ params }: ISingleProductProps) {
-  const productId = await params.productId;
-  const product = await getProduct(+productId);
+export default async function SingleProduct({
+  params,
+}: SingleProductPageProps) {
+  const { productId } = await params;
+  const product = await getProduct(Number(productId));
   return (
     <Grid container marginBottom={"2rem"} rowGap={3}>
       {product.imageExists && (
