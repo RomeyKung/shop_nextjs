@@ -187,19 +187,20 @@ const Setting = ({ logout }: IHeaderProps) => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem
-            key={setting.title}
-            onClick={() => {
-              setting.function();
-              handleCloseUserMenu;
-            }}
-          >
-            <Typography sx={{ textAlign: "center" }}>
-              {setting.title}
-            </Typography>
-          </MenuItem>
-        ))}
+        {settings &&
+          settings.map((setting) => (
+            <MenuItem
+              key={setting.title}
+              onClick={() => {
+                setting.function();
+                handleCloseUserMenu;
+              }}
+            >
+              <Typography sx={{ textAlign: "center" }}>
+                {setting.title}
+              </Typography>
+            </MenuItem>
+          ))}
       </Menu>
     </Box>
   );
